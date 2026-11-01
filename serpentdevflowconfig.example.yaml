@@ -1,0 +1,16 @@
+gitea_token: ""
+gitea_host: "http://git.friedmicro-lab.org/"
+github_username: ""
+github_repo_limit: 50
+repo_exclusions_local:
+  - "Mirrors/"
+  - "Inactive_Projects/"
+repo_exclusions_local_exceptions: []
+exclusions_backup:
+  - "Mirrors/linux"
+  - "Mirrors/QEMU"
+  - "Mirrors/kubernetes"
+exclusions_backup_exceptions: []
+shell_cache_location: "/home/friedmicro/.serpent-shell.json"
+repo_local_location: "/home/friedmicro/development"
+repo_backup_location: "/home/friedmicro/.gitbackup"

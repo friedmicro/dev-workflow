@@ -1,0 +1,9 @@
+[package]
+name = "serpent"
+version = "0.1.0"
+edition = "2021"
+description = "A shell prompt generator that shows git branch, host type and deployment tier."
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
