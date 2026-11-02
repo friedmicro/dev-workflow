@@ -52,7 +52,7 @@ def set_origin(repo_dir, origin_url):
     run_git(repo_dir, "git", "remote", "set-url", "origin", origin_url)
 
 
-def set_github_remote(repo_dir, folder_name):
+def set_gitea_remote(repo_dir, folder_name):
     shell_data = load_shell_data()
     gitea_origins = shell_data.get("gitea_origins", [])
     gitea_origin = find_gitea_origin(gitea_origins, folder_name)
@@ -63,7 +63,7 @@ def set_github_remote(repo_dir, folder_name):
     print("Switched to gitea origin:", gitea_origin)
 
 
-def set_gitea_remote(repo_dir, folder_name):
+def set_github_remote(repo_dir, folder_name):
     shell_data = load_shell_data()
     github_dirs = shell_data.get("github_dirs", [])
     if folder_name not in github_dirs:
