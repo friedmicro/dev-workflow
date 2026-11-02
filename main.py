@@ -1,8 +1,10 @@
+from ast import Expression
 import json
 import subprocess
 from pathlib import Path
 import requests
 import yaml
+import time
 
 with open("./serpentdevflowconfig.yaml", 'r') as file:
     data_dict = yaml.safe_load(file)
@@ -93,24 +95,32 @@ def get_dir_name(http_url):
 
 def sync_repo(http_url, git_root):
     git_directory = get_dir_name(http_url)
-    if Path(git_root + "/" + git_directory).is_dir():
-        result = subprocess.run(
-            ["git", "pull"],
-            cwd=git_root + "/" + git_directory,
-            capture_output=True,
-            text=True,
-            check=True
-        )
-    else:
-        print()
-        result = subprocess.run(
-            ["git", "clone", form_gitea_http_git(http_url)],
-            cwd=git_root,
-            capture_output=True,
-            text=True,
-            check=True
-        )
-    print("Git operation:\n", result.stdout)
+    try:
+        if Path(git_root + "/" + git_directory).is_dir():
+            result = subprocess.run(
+                ["git", "pull"],
+                cwd=git_root + "/" + git_directory,
+                capture_output=True,
+                text=True,
+                check=True
+            )
+        else:
+            print()
+            result = subprocess.run(
+                ["git", "clone", form_gitea_http_git(http_url)],
+                cwd=git_root,
+                capture_output=True,
+                text=True,
+                check=True
+            )
+        print("Git operation:\n", result.stdout)
+    except subprocess.CalledProcessError as e:
+        # Given an actual outage this will crash this script, but this is unlikely and the target user is a developer who is running this
+        # manually so this code simplicity is worth the risk
+        print("Git operation, call stack on follows (retrying): ")
+        print(http_url)
+        print(e.stderr)
+        sync_repo(http_url, git_root)
 
 
 def main():
