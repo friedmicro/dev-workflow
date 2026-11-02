@@ -1,3 +1,4 @@
+shell_username: "user"
 gitea_token: ""
 gitea_host: "http://git.friedmicro-lab.org/"
 github_username: ""

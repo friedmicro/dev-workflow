@@ -17,6 +17,7 @@ repo_exclusions_local = data_dict["repo_exclusions_local"]
 repo_exclusions_local_exceptions = data_dict["repo_exclusions_local_exceptions"]
 exclusions_backup = data_dict["exclusions_backup"]
 exclusions_backup_exceptions = data_dict["exclusions_backup_exceptions"]
+shell_username = data_dict["shell_username"]
 shell_cache_location = data_dict["shell_cache_location"]
 repo_local_location = data_dict["repo_local_location"]
 repo_backup_location = data_dict["repo_backup_location"]
@@ -24,6 +25,7 @@ repo_backup_location = data_dict["repo_backup_location"]
 serpent_shell_data = {}
 serpent_shell_data["github_dirs"] = []
 serpent_shell_data["github_user"] = github_username
+serpent_shell_data["shell_user"] = shell_username
 serpent_shell_data["gitea_origins"] = []
 
 def should_exclude_based_on_exclusion_list(exclusions, exclusion_exceptions, repo_url):

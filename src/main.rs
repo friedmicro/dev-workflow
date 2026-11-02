@@ -9,11 +9,17 @@ use std::process::Command;
 struct State {
     #[serde(default)]
     github_dirs: Vec<String>,
+    #[serde(default = "default_shell_user")]
+    shell_user: String,
+}
+
+fn default_shell_user() -> String {
+    "user".to_string()
 }
 
 fn main() {
     let state = load_state();
-    let user = "lucia";
+    let user = state.shell_user.as_str();
 
     let (is_git_repo, dir_name, cwd) = handle_git_repo_switch(user);
     if !is_git_repo {
@@ -110,6 +116,7 @@ fn load_state() -> State {
             );
             State {
                 github_dirs: Vec::new(),
+                shell_user: default_shell_user(),
             }
         }),
         Err(e) => {
@@ -119,6 +126,7 @@ fn load_state() -> State {
             );
             State {
                 github_dirs: Vec::new(),
+                shell_user: default_shell_user(),
             }
         }
     }
