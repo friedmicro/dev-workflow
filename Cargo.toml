@@ -1,7 +1,7 @@
 [package]
 name = "serpent"
 version = "0.1.0"
-edition = "2021"
+edition = "2024"
 description = "A shell prompt generator that shows git branch, host type and deployment tier."
 
 [dependencies]
